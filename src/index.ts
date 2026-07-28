@@ -10,6 +10,7 @@ import studentRouter_v2 from "./routes/studentsRoutes_v2.ts";
 import studentRouter_v3 from "./routes/studentsRoutes_v3.ts";
 import courseRouter_v2 from "./routes/coursesRouters_v2.ts";
 import userRouter_v2 from "./routes/usersRoutes.ts";
+import enrollmentsRouters_v2 from "./routes/enrollmentsRouters_v2.ts";
  
 const app = express();
 const port = 3000;
@@ -34,6 +35,21 @@ app.use("/api/v2/students", studentRouter_v2);
 app.use("/api/v3/students", studentRouter_v3);
 app.use("/api/v2/courses", courseRouter_v2);
 app.use("/api/v2/users", userRouter_v2);
+app.use("/api/v2/enrollments", enrollmentsRouters_v2);
+
+app.get('/api/me',(req,res)=>{
+  return res.status(200).json({
+    success: true,
+    message: "Student Information",
+    data: {
+      studentId: "680610698",
+      firstname: "Phatthira",
+      lastName: "Rojanaphiboontham",
+      pogram: "CPE",
+      section: "001"
+    }
+  })
+})
 
 // endpoint check middleware
 app.use(notFoundMiddleware);
